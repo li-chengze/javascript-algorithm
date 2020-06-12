@@ -4,12 +4,12 @@ test('LinkedList works', () => {
     // initialize
     const list = new LinkedList();
 
-    list.insert(3);
+    list.push(3);
     expect(list.head.val).toBe(3);
     expect(list.tail.val).toBe(3);
 
-    list.insert(2);
-    list.insert(1);
+    list.push(2);
+    list.push(1);
 
     expect(list.head.val).toBe(3);
     expect(list.tail.val).toBe(1);
@@ -27,4 +27,20 @@ test('LinkedList works', () => {
     expect(list.head).toBe(null);
     expect(list.tail).toBe(null);
     expect(list.length).toBe(0);
+
+    list.push(1);
+    list.push(2);
+    list.push(3);
+
+    expect(list.shift().val).toBe(1);
+
+    list.unshift(4);
+    expect(list.shift().val).toBe(4);
+    expect(list.length).toBe(2);
+
+    list.insert(0, 5);
+    expect(list.head.val).toBe(5);
+
+    list.insert(1, 6);
+    expect(list.head.next.val).toBe(6);
 });

@@ -10,7 +10,7 @@ class LinkedList {
     tail = null;
     length = 0;
 
-    insert(val) {
+    push(val) {
         const node = new Node(val);
         if (this.head == null) {
             this.head = node;
@@ -48,6 +48,52 @@ class LinkedList {
 
         this.length--;
         return oldTail;
+    }
+
+    unshift(val) {
+        const node = new Node(val);
+        node.next = this.head;
+        this.head = node;
+        this.length++;
+    }
+
+    shift() {
+        if (this.head == null) {
+            return null;
+        }
+
+        const node = this.head;
+        this.head = this.head.next;
+        this.length--;
+
+        return node;
+    }
+
+    insert(pos, val) {
+        if (pos > this.length) {
+            return false;
+        }
+
+        const node = new Node(val);
+        const curNode = this.head;
+
+        if (pos == 0) {
+            node.next = this.head;
+            this.head = node;
+            this.length++;
+            return true;
+        }
+
+        while (pos > 1) {
+            pos--;
+            curNode = curNode.next;
+        }
+
+        node.next = curNode.next;
+        curNode.next = node;
+        this.length++;
+
+        return true;
     }
 }
 
